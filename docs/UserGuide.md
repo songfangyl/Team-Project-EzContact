@@ -89,14 +89,19 @@ will be using these names to refer to the section specified in the following Use
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/<name> p/<phone number>`, `p/12341234 n/John` is also acceptable.
 
-* Prefixes (e.g. `n/`, `p/`, `e/`) are designed to be short, however, we do still provide the functionality to detect 
+* Prefixes (e.g. `n/`, `p/`, `e/`) are designed to be short, however, we do still provide the functionality to detect
 full-name prefixes ,and they can be used interchangeably(e.g. `n/` and `name/` are interchangeable),
 click [here](#prefix-to-full-name-prefix-translation-table) to see a full table of prefix to full-name prefix relation.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command is `help 123`, it will be interpreted as `help`.
 
-* Unless otherwise stated, when specifying restrictions on number of characters, spaces in between words 
+* Duplicate customer is defined as 2 person who have identical `<phone number>` or `<email>`.
+
+* `<index>` must be value of between (1 -> 2147483647), any value out of this range will be considered as incorrect format;
+whereas value in range but not in customer list is considered out of bound.
+
+* Unless otherwise stated, when specifying restrictions on number of characters, spaces in between words
 are included in the count, while leading and trailing spaces are excluded.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -127,7 +132,7 @@ Adds a new customer with the respective details to EzContact.
 * `<remark>` should **not be longer than 150 characters**.
 * A customer **must not have more than 10 tags** assigned to it.
 * A customer **must not have more than 5 insurances** assigned to it.
-* Adding a customer with a `<phone number>` or `<email>` that **already exists** in EzContact is **not allowed**.
+* Adding a [**duplicate customer**](#features) in EzContact is **not allowed**.
 </box>
 
 **Examples:**
@@ -189,7 +194,7 @@ After:
 * `<email>` should be a **valid email address**(i.e. `local-part@domain`).
 * `<address>` should **not be longer than 100 characters**.
 * Tags, Priorities, and Remarks are not editable.
-* Editing a customer to have the same `<phone number>` or `<email>` to other existing customers in EzContact is **not allowed.**
+* Editing a customer to have the same `<phone number>` or `<email>` to other existing customers will cause [**duplicate customer**](#features) error.
 
 </box>
 
@@ -210,7 +215,7 @@ After:
 
 **Format:**
 
-`find [n/[keywords]] [p/[keywords]] [e/[keywords]] [a/[keywords]] [t/[keywords]] [i/[keywords]] [pr/[keywords]] [r/[keywords]]`
+`find [n/<keywords>] [p/<keywords>] [e/<keywords>] [a/<keywords>] [t/<keywords>] [i/<keywords>] [pr/<keywords>] [r/<keywords>]`
 
 **Description:**
 
@@ -227,16 +232,7 @@ These keywords can be spread across different `tag` / `insurance` entries.
 <box type="warning" seamless>
 
 **Caution:**
-* **At least one** prefix should be provided.
-* Available prefix:
-  - `address`: `a/`
-  - `email`: `e/`
-  - `insurance`: `i/`
-  - `name`: `n/`
-  - `phone`: `p/`
-  - `priority`: `pr/`
-  - `remark`: `r/`
-  - `tag`: `t/`
+* **At least one** of the optional fields must be provided.
 * Keyword is **NOT** mandatory.
 
 </box>
@@ -309,8 +305,8 @@ After:
 **Description:**
 
 * Updated the insurance of the customer at `<index>` in the customer list
-* Duplicate insurances to add/delete is ignored
-* Adding existing insurance and deleting non-existing insurance from customer has no effect
+* **Duplicate insurances** to add/delete is ignored
+* Adding **existing insurance** and **deleting non-existing** insurance from customer has no effect
 
 <box type="warning" seamless>
 
@@ -376,7 +372,6 @@ Before:
 
 ![priorityBefore](images/priority-command-example/priority-before.png)
 
-<div style="page-break-after: always;"></div>
 
 After:
 
@@ -398,7 +393,7 @@ After:
 
 ### Adding a remark to a customer: `remark`
 
-Format: `remark <index> [remark]`
+Format: `remark <index> <remark>`
 
 **Description:**
 
@@ -409,7 +404,7 @@ Format: `remark <index> [remark]`
 
 **Caution:**
 * `<index>`should **only be one of** the indices shown in the displayed list.
-* `Remark` cannot be longer than 150 characters.
+* `<remark>` cannot be longer than 150 characters.
 
 </box>
 
@@ -570,7 +565,7 @@ After:
 
 </box>
 
-*Examples:*
+**Examples:**
 * `unmarkappt 1` decrements the appointment counter of the first customer in the displayed list by 1.
 
 <div style="page-break-after: always;"></div>
@@ -685,7 +680,7 @@ and rename the file to `addressbook.json`.
 
 **Q:** Can I transfer my data to another computer? <br>
 **A:** Yes, you can. Install EzContact in the computer and replace the `addressbook.json` file in the `<JAR file directory>/data` directory
-with the `addressbook.js` file from your previous computer. <br> <br>
+with the `addressbook.json` file from your previous computer. <br> <br>
 **Q:** Why are there sample customers when I first launch EzContact and how do I get rid of them? <br>
 **A:** The sample customers are for new users to try out various commands in EzContact. To get rid of them, simply type `clear` in the
 command box.
@@ -699,16 +694,16 @@ command box.
 | **Add**        | `add n/<name> p/<phone number> e/<email> [a/<address>] [pr/<priority>] [t/<tag>]... [i/<insurance>]... [r/<remark>]`          <hr>           `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/tall r/some remarks` |
 | **Delete**     | `delete <index>`                                            <hr>       `delete 3`                                                                                                                                                                |
 | **Edit**       | `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] ` <hr> `edit 2 n/James Lee e/jameslee@example.com`                                                                                                                         |
-| **List**       | `list`                                                                      <hr>                                                                                                                                                                 |
-| **Find**       | `find [n/[keywords]] [p/[keywords]] [e/[keywords]] [a/[keywords]] [t/[keywords]] [i/[keywords]] [pr/[keywords]] [r/[keywords]]`                      <hr>      `find n/song i/abc`                                                               |
+| **Find**       | `find [n/<keywords>] [p/<keywords>] [e/<keywords>] [a/<keywords>] [t/<keywords>] [i/<keywords>] [pr/<keywords>] [r/<keywords>]`                      <hr>      `find n/song i/abc`                                                               |
 | **Tag**        | `tag <index> [at/<tag to add>]... [dt/<tag to delete>]...`     <hr>         `tag 1 at/tall dt/short at/male`                                                                                                                                     |
 | **Insurance**  | `insurance <index> [ai/<insurance to add>]... [di/<insurance to delete>]...`     <hr>         `insurance 2 ai/AIA insurance di/Great Eastern Insurance`                                                                                          |
-| **Remark**     | `remark <index> [remark]` <hr>   `remark 2 some remarks`                                                                                                                                                                                         |
-| **Priority**   | `priority <index> <priority>`  <hr>  `priority 1 medium`                                                                                                                                                                                         |
+| **Remark**     | `remark <index> <remark>` <hr>   `remark 2 some remarks`                                                                                                                                                                                         |
+| **Priority**   | `priority <index> <priority>`  <hr>  `priority 1 medium`       <div style="page-break-after: always;"></div>                                                                                                                                                                                 |
 | **Addappt**    | `addappt <index> d/<date> [t/<time>] [v/<venue>]` <hr> `addappt 3 d/2025-12-12 t/23:59 v/Starbucks`                                                                                                                                              |
 | **Deleteappt** | `deleteappt <index>` <hr> `deleteappt 1`                                                                                                                                                                                                         |
 | **Markappt**   | `markappt <index>` <hr> `markappt 1`                                                                                                                                                                                                             |
 | **Unmarkappt** | `unmarkappt <index>` <hr> `unmarkappt 1`                                                                                                                                                                                                         |
+| **List**       | `list`                                                                                                                                                                                                                                           |
 | **Clear**      | `clear`                                                                                                                                                                                                                                          |
 | **Help**       | `help`                                                                                                                                                                                                                                           |
 | **Exit**       | `exit`                                                                                                                                                                                                                                           |
