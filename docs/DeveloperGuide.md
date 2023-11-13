@@ -1124,7 +1124,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-
 ## Deleting a customer
 
 **Deleting a customer while all customers are being shown**
