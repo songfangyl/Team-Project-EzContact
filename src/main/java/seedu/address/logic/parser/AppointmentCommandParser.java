@@ -49,6 +49,10 @@ public class AppointmentCommandParser implements Parser<AppointmentCommand> {
         return new AppointmentCommand(index, new Appointment(parsedDate, parsedTime, parsedVenue));
     }
 
+    //@@author AY2122S1-CS2103T-T09-4/tp--reused
+    //Reused from https://github.com/AY2122S1-CS2103T-T09-4/tp/blob/master/
+    //src/main/java/seedu/fast/logic/parser/AppointmentCommandParser.java
+    //with minor modifications
     private String checkInputDate(String retrievedDate) throws ParseException {
         if (retrievedDate.equalsIgnoreCase(Appointment.NO_APPOINTMENT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -85,3 +89,4 @@ public class AppointmentCommandParser implements Parser<AppointmentCommand> {
         return parsedVenue;
     }
 }
+    //@@author

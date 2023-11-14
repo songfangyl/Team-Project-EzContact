@@ -487,7 +487,7 @@ After:
 
 **Description:**
 
-* Deletes a customer's appointment at `<index>` in the displayed customer list.\
+* Deletes a customer's appointment at `<index>` in the displayed customer list.
 * Used when the appointment has been cancelled.
 
 <box type="warning" seamless>

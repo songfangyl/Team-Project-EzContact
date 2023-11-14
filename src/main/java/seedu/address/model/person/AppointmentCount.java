@@ -2,6 +2,11 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+//@@author AY2122S1-CS2103T-T09-4/tp--reused
+//Reused from https://github.com/AY2122S1-CS2103T-T09-4/tp/blob/master/
+//src/main/java/seedu/fast/model/person/AppointmentCount.java
+//with minor modifications
 /**
  * Keeps track of the number of appointment the user have with a client.
  */
@@ -97,3 +102,4 @@ public class AppointmentCount {
         return count;
     }
 }
+//@@author

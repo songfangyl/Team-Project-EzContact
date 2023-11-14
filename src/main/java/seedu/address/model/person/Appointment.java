@@ -12,6 +12,10 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 
+//@@author AY2122S1-CS2103T-T09-4/tp--reused
+//Reused from https://github.com/AY2122S1-CS2103T-T09-4/tp/blob/master/
+//src/main/java/seedu/fast/model/person/Appointment.java
+//with minor modifications
 /**
  * Represents an appointment with the Person in the address book.
  * Guarantees: immutable; is always valid.
@@ -215,3 +219,4 @@ public class Appointment {
         return builder.toString();
     }
 }
+//@@author

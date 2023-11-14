@@ -554,7 +554,6 @@ By default, each `Person` has an empty default appointment.
 **Implementing `AppointmentCommand`**
 
 `AppointmentCommand` executes its command on the Model, updating the Model accordingly to reflect the changes made by the command on the Model. Note that an `AppointmentCommand` is **non-executable** if the index is not in range or the person has an existing appointment.
-Note that an `AppointmentCommand` is **non-executable** if there is an **existing appointment**.
 
 
 The sequence diagram below illustrates the interactions of `AppointmentCommand#execute(Model model)`, taking `execute(m)` call to the `AppointmentCommand` as an example. Note that the **reference frames have been omitted** as the operations performed are trivial.
