@@ -13,7 +13,7 @@ AddressBook Level 3
 
 Given below are my contributions to the project.
 
-###### **New Feature**: Appointment
+###### **New Feature**: Appointment, Add Appointment, Delete Appointment, Mark Appointment, Unmark Appointment
 
 * What it does: Allows the user to assign appointment details: Date, Time, Venue, to a customer, and keep track of the number of
 appointments completed with a customers.
@@ -34,7 +34,8 @@ efficiency and increase their conversion rate of closing customer deals.
 ###### **Project management**:
 * Have weekly meetings and brainstorm sessions to decide direction of the project.
 * Have some commits and merged some pull requests in every milestone.
-* Have some reviews and comments on teammates' pull requests.
+* Have some reviews and comments on teammates' pull requests. [#171](https://github.com/AY2324S1-CS2103T-W16-2/tp/pull/171) [#154](https://github.com/AY2324S1-CS2103T-W16-2/tp/pull/154)
+* Responses to teammates' comments. [#77](https://github.com/AY2324S1-CS2103T-W16-2/tp/pull/77)
 * Discussed project ideation, use cases, target audience revamp
 
 
