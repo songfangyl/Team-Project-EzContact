@@ -14,6 +14,10 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
+//@@author AY2122S1-CS2103T-T09-4/tp--reused
+//Reused from https://github.com/AY2122S1-CS2103T-T09-4/tp/blob/master/
+//src/main/java/seedu/fast/logic/commands/MarkAppointmentCommand.java
+//with minor modifications
 /**
  * Marks the appointment with an existing person in the address book.
  */
@@ -94,3 +98,4 @@ public class MarkAppointmentCommand extends Command {
                 && appointment.equals(e.appointment);
     }
 }
+//@@author

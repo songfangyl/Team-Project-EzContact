@@ -14,6 +14,10 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
+//@@author AY2122S1-CS2103T-T09-4/tp--reused
+//Reused from https://github.com/AY2122S1-CS2103T-T09-4/tp/blob/
+//master/src/main/java/seedu/fast/logic/commands/DeleteAppointmentCommand.java
+//with minor modifications
 /**
  * Deletes the appointment with an existing person in the address book.
  */
@@ -85,5 +89,5 @@ public class DeleteAppointmentCommand extends Command {
         return index.equals(e.index)
                 && appointment.equals(e.appointment);
     }
-
 }
+//@@author
